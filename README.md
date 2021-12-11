@@ -17,3 +17,4 @@ sabir - help, のこてるもの
 
 
 
+https://dota2.fandom.com/wiki/Game_Versions
