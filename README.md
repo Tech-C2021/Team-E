@@ -8,3 +8,12 @@ isijima - html
 sabir - help, のこてるもの
 
 
+# ワークフロー 
+- 最初にmainのブランチからgit pullする
+- 自分のブランチに切り替える  
+`git checkout branch名`
+- mainのブランチにpullしたものを自分のブランチにrebaseする
+`git rebase main`
+
+
+
