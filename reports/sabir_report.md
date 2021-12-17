@@ -33,4 +33,15 @@ create table changes (
 changesテーブルのところにある` FOREIGNKEY(heroId) REFERENCES heroes(id) `
 のところ意味わからなかった場合に声をかけてください。
 
+### 2021-12-17
 
+Heroesテーブルに画像ようなコラム無かった事に気づいて追加しました.
+今のHeroesテーブルは下記の感じ。
+```
+CREATE TABLE heroes (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+status TEXT NOT NULL,
+infoDate DATETIME NOT NULL
+, heorIcon TEXT);
+```
