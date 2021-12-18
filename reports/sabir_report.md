@@ -45,3 +45,10 @@ status TEXT NOT NULL,
 infoDate DATETIME NOT NULL
 , heorIcon TEXT);
 ```
+
+### 2021-12-18
+
+ user interfaceを作りました。user interfaceにまだlogicが足りないけど少しずつ追加して行きます。
+ 今はinsertとshowのlogicしかないです。あるlogicにもまだ確認するっ事がいっぱいある例えば同じhero名入ってるかどかとか
+ 入力したhero名は本当のheroかどうかとか。
+ 
