@@ -48,7 +48,10 @@ infoDate DATETIME NOT NULL
 
 ### 2021-12-18
 
- user interfaceを作りました。user interfaceにまだlogicが足りないけど少しずつ追加して行きます。
- 今はinsertとshowのlogicしかないです。あるlogicにもまだ確認するっ事がいっぱいある例えば同じhero名入ってるかどかとか
- 入力したhero名は本当のheroかどうかとか。
- 
+ - user interfaceを作りました。user interfaceにまだlogicが足りないけど少しずつ追加して行きます。
+  今はinsertとshowのlogicしかないです。あるlogicにもまだ確認するっ事がいっぱいある例えば同じhero名入ってるかどかとか
+  入力したhero名は本当のheroかどうかとか。
+- Databaseと関するlogicは全部./Repositories/<ファイル名＋Repository>.rbにしました。
+これはどいう事だと言えば` SELECT * FROM heroes `見たいなstatementは全部./Repositoryに住むます
+- Databaseから返るDataは全部ここでUserに出せる形にして関数で返す。
+- MainはUserのinterfaceみたいな物ですControllerから返るDataは全部ここで表示します。

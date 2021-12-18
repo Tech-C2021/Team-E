@@ -10,12 +10,6 @@ class Heroes
     end
     def showHeroes
         heroes = @db.execute "SELECT * FROM heroes"
-        if heroes == []
-            p "No Heroes inserted"
-        else
-            heroes.each do |hero|
-                p "#{hero}"
-            end
-        end
+        return heroes
     end
 end
