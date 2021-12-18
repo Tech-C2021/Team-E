@@ -18,7 +18,10 @@ end
 
 doc = Nokogiri::HTML.parse(html, nil, charset)
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 # nerfed の text
 nerfed_text = doc.xpath('//*[@id="mw-content-text"]/div/table[1]/tbody/tr[2]/td[2]/ul[2]/li[1]/text()')
 
