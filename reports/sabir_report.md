@@ -55,3 +55,10 @@ infoDate DATETIME NOT NULL
 これはどいう事だと言えば` SELECT * FROM heroes `見たいなstatementは全部./Repositoryに住むます
 - Databaseから返るDataは全部ここでUserに出せる形にして関数で返す。
 - MainはUserのinterfaceみたいな物ですControllerから返るDataは全部ここで表示します。
+- Docker added
+
+### Docker使い方
+- 最初は ` source aliases.sh ` をscrapingProjectのrootフォルダに移動して起動する。
+- ` s-build ` commandはdockerのcontainerをbuildします。
+- ` scraper ` dockerのcontainerを立ち上がる。
+- ` scrape ` scrapingプロジェクトを起動する。

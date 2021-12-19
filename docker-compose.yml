@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  # server
+  server:
+    build:
+      context: .
+      dockerfile: Docker/Dockerfile
+    container_name: scraping
+    image: scraping:latest
+    tty: true

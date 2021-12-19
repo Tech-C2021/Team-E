@@ -1,4 +1,4 @@
-require "./Repositories/heroesRepository.rb"
+require "./app/Repositories/heroesRepository.rb"
 
 class HeroController
     def initialize
@@ -20,6 +20,12 @@ class HeroController
         p "Enter track: enter Heroes to Track, show: show all the heroes in the database,end: to quit the programme"
     end
 
+    def insertHeroes(heroes)
+        heroes.each do |hero|
+            @heroes.heroesToTrack(hero)
+        end
+    end
+
     def insertHeroesToTrack
         p "Enter the hero name you want to track"
         p "or enter q to exit insert state"
@@ -29,11 +35,8 @@ class HeroController
             heroesList.push(name)
             insertHeroesToTrack
         end
-        heroesList.each do |hero|
-            @heroes.heroesToTrack(hero)
-        end
-        p "You just ended the insert state"
-        p "Enter track: enter Heroes to Track, show: show all the heroes in the database,end: to quit the programme"
+        insertHeroes(heroesList)
+        p "You have exited insert state"
     end
 
     def showHelp
