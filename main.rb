@@ -1,4 +1,4 @@
-require "./Controllers/heroController.rb"
+require "./app/Controllers/heroController.rb"
 def commands
     p "Enter track: enter Heroes to Track, show: show all the heroes in the database,end: to quit the programme"
     command = ""

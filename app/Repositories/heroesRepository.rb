@@ -2,7 +2,7 @@ require "sqlite3"
 
 class Heroes
     def initialize()
-        @db = SQLite3::Database.open 'scrape.db'
+        @db = SQLite3::Database.open './scrape.db'
     end
 
     def heroesToTrack(name)
