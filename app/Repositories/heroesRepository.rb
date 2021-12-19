@@ -12,4 +12,8 @@ class Heroes
         heroes = @db.execute "SELECT * FROM heroes"
         return heroes
     end
+    def showByName(name)
+        hero = @db.execute "SELECT * FROM heroes where name = (?)",name
+        return hero
+    end
 end

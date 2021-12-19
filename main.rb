@@ -11,6 +11,8 @@ def commands
             heroController.insertHeroesToTrack
         elsif(command == "help")
             heroController.showHelp
+        elsif(command == "byname")
+            heroController.showHeroByName
         elsif(command == "end")
             p "Bye!"
         else

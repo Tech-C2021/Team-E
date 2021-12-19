@@ -17,7 +17,7 @@ class HeroController
                 p "heroIcon: #{hero[4]}"
             end
         end
-        p "Enter track: enter Heroes to Track, show: show all the heroes in the database,end: to quit the programme"
+        p "Enter track: enter Heroes to Track, show: show all the heroes in the database, byname: show heroes by id,end: to quit the programme"
     end
 
     def insertHeroes(heroes)
@@ -39,9 +39,23 @@ class HeroController
         p "You have exited insert state"
     end
 
+    def showHeroByName
+        p "Enter the name of the hero"
+        name = gets.chomp
+        @heroes.showByName(name).each do |hero|
+            p "id: #{hero[0]}"
+            p "name: #{hero[1]}"
+            p "status: #{hero[2]}"
+            p "infoVersion: #{hero[3]}"
+            p "heroIcon: #{hero[4]}"
+        end
+        p "Enter track: enter Heroes to Track, show: show all the heroes in the database, byname: show heroes by id,end: to quit the programme"
+    end
+
     def showHelp
         p "track: enter insert mode"
         p "show: show heroes"
+        p "end: quit the programme"
         p "help: show help"
     end
 
