@@ -8,7 +8,7 @@ class HeroController
         if @heroes.showHeroes === []
             p "no heroes inserted"
         else
-        p "List of tracked heroes"
+            p "List of tracked heroes"
             @heroes.showHeroes.each do |hero|
                 p "id: #{hero[0]}"
                 p "name: #{hero[1]}"
@@ -17,7 +17,7 @@ class HeroController
                 p "heroIcon: #{hero[4]}"
             end
         end
-        p "Enter track: enter Heroes to Track, show: show all the heroes in the database,end: to quit the programme"
+        p "Enter track: enter Heroes to Track, show: show all the heroes in the database, byname: show heroes by id,end: to quit the programme"
     end
 
     def insertHeroes(heroes)
@@ -39,9 +39,37 @@ class HeroController
         p "You have exited insert state"
     end
 
+    def showHeroByName
+        p "Enter the name of the hero you want to search for: "
+        name = gets.chomp
+        @heroes.showByName(name).each do |hero|
+            p "id: #{hero[0]}"
+            p "name: #{hero[1]}"
+            p "status: #{hero[2]}"
+            p "infoVersion: #{hero[3]}"
+            p "heroIcon: #{hero[4]}"
+        end
+        p "Enter track: enter Heroes to Track, show: show all the heroes in the database, byname: show heroes by id,end: to quit the programme"
+    end
+
+    def deleteHeroByName
+        p "Enter the name of hero you want to delete: "
+        name = gets.chomp
+        @heroes.deleteHeroByName(name)
+        p "Enter track: enter Heroes to Track, show: show all the heroes in the database, byname: show heroes by id,end: to quit the programme"
+    end
+
+    def clearDatabase
+        @heroes.clearDatabase
+        p "All the database has been cleared."
+    end
     def showHelp
         p "track: enter insert mode"
         p "show: show heroes"
+        p "byname: show heroes by specific name"
+        p "delete: delete by name"
+        p "end: quit the programme"
+        p "cleardatabase: clears all the data in the database"
         p "help: show help"
     end
 
