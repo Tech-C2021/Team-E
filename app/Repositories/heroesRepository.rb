@@ -16,4 +16,10 @@ class Heroes
         hero = @db.execute "SELECT * FROM heroes where name = (?)",name
         return hero
     end
+    def deleteHeroByName(name)
+        @db.execute ("DELETE FROM heroes where name = (?)"), name
+    end
+    def clearDatabase
+        @db.execute ("DELETE FROM heroes")
+    end
 end

@@ -13,6 +13,10 @@ def commands
             heroController.showHelp
         elsif(command == "byname")
             heroController.showHeroByName
+        elsif(command == "delete")
+            heroController.deleteHeroByName
+        elsif(command == "clearalldata")
+            heroController.clearDatabase
         elsif(command == "end")
             p "Bye!"
         else
