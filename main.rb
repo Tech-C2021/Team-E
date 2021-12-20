@@ -11,6 +11,12 @@ def commands
             heroController.insertHeroesToTrack
         elsif(command == "help")
             heroController.showHelp
+        elsif(command == "byname")
+            heroController.showHeroByName
+        elsif(command == "delete")
+            heroController.deleteHeroByName
+        elsif(command == "clearalldata")
+            heroController.clearDatabase
         elsif(command == "end")
             p "Bye!"
         else
