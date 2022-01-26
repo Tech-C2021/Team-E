@@ -6,6 +6,8 @@ gem 'nokogiri'
 gem 'open-uri'
 gem 'sqlite3'
 gem 'openssl'
+gem 'sinatra'
+gem 'webrick'
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 

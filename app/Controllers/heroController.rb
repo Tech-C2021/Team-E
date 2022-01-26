@@ -1,4 +1,4 @@
-require "./app/Repositories/heroesRepository.rb"
+require_relative "../Repositories/heroesRepository.rb"
 
 class HeroController
     def initialize
