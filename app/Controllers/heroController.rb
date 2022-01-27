@@ -1,9 +1,12 @@
-require "./app/Repositories/heroesRepository.rb"
+require_relative "../Repositories/heroesRepository.rb"
 
 class HeroController
     def initialize
         @heroes = Heroes.new()
     end
+
+#display heroes
+
     def displayHeroes
         if @heroes.showHeroes === []
             p "no heroes inserted"
@@ -20,11 +23,17 @@ class HeroController
         p "Enter track: enter Heroes to Track, show: show all the heroes in the database, byname: show heroes by id,end: to quit the programme"
     end
 
+
+#create new heroes
+
     def insertHeroes(heroes)
         heroes.each do |hero|
             @heroes.heroesToTrack(hero)
         end
     end
+
+
+#track heroes
 
     def insertHeroesToTrack
         p "Enter the hero name you want to track"
@@ -39,6 +48,8 @@ class HeroController
         p "You have exited insert state"
     end
 
+#showHeroByName
+
     def showHeroByName
         p "Enter the name of the hero you want to search for: "
         name = gets.chomp
@@ -52,6 +63,8 @@ class HeroController
         p "Enter track: enter Heroes to Track, show: show all the heroes in the database, byname: show heroes by id,end: to quit the programme"
     end
 
+#delete tracked heroes
+
     def deleteHeroByName
         p "Enter the name of hero you want to delete: "
         name = gets.chomp
@@ -63,6 +76,9 @@ class HeroController
         @heroes.clearDatabase
         p "All the database has been cleared."
     end
+
+#help bar
+
     def showHelp
         p "track: enter insert mode"
         p "show: show heroes"

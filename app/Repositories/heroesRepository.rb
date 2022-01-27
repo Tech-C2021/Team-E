@@ -3,6 +3,7 @@ require "sqlite3"
 class Heroes
     def initialize()
         @db = SQLite3::Database.open './scrape.db'
+        @db.results_as_hash=true
     end
 
     def heroesToTrack(name)
