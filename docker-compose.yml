@@ -9,4 +9,6 @@ services:
     ports:
       - 127.0.0.1:4567:4567
     image: scraping:latest
+    volumes:
+      - "./app:/app"
     tty: true
