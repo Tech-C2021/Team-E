@@ -39,9 +39,34 @@ end
 
 #when sending all heroes with their stats back have to change the data into json 
 
-get '/test' do
+
+get '/meta/beginner' do
+  begin
+    scrapingController.getHeroesInMetaForBeginnerTier()
+  rescue StandardError => e
+    p e
+  end  
+end
+
+get '/meta/intermediate' do
+  begin
+    scrapingController.getHeroesInMetaForIntermediateTier()
+  rescue StandardError => e
+    p e
+  end  
+end
+
+get '/meta/top' do
   begin
     scrapingController.getHeroesInMetaForTopTier()
+  rescue StandardError => e
+    p e
+  end  
+end
+
+get '/meta/low' do
+  begin
+    scrapingController.getHeroesInMetaForLowTier()
   rescue StandardError => e
     p e
   end  
