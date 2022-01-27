@@ -5,7 +5,7 @@ require_relative '../libs/realPath.rb'
 require_relative'../Repositories/heroesRepository.rb'
 class ScrapingController
     def initialize
-        @url = "https://www.dotabuff.com/heroes/meta"
+        @userHeroes = Heroes.new() 
     end
 
     def fileReader(uri)
@@ -26,7 +26,7 @@ class ScrapingController
     def getHeroesWithStats()
     begin
         reconstructedStats = []
-        nokogiriDoc = fileReader(@url)
+        nokogiriDoc = fileReader("https://www.dotabuff.com/heroes/meta")
 
         nokogiriDoc.css('tr').each do |meta|
             allData = meta.text.split("%")
@@ -53,12 +53,25 @@ class ScrapingController
     end
     end
 
+    def constructHeroesForReturn(heroName, winRate)
+        begin
+            heroes = {}
+                heroes["name"] = heroName
+                heroes["winRate"] = winRate
+            return heroes
+        rescue StandardError => e
+            p e
+        end
+    end
+
+
     def getHeroesInMetaForLowTier()
         begin
             lowTierHeroesToPlay = []
             getHeroesWithStats().each do |hero|
                 if hero['lowTierWinRate'].to_f > 51
-                    lowTierHeroesToPlay.push({hero["name"] => hero["lowTierWinRate"]})
+                    heroes = constructHeroesForReturn(hero["name"], hero["lowTierWinRate"])
+                    lowTierHeroesToPlay.push(heroes)
                 end
             end
             return lowTierHeroesToPlay.to_json
@@ -72,7 +85,8 @@ class ScrapingController
             beginnerTierHeroesToPlay = []
             getHeroesWithStats().each do |hero|
                 if hero['beginnerTierWinRate'].to_f > 51
-                    beginnerTierHeroesToPlay.push({hero["name"] => hero["beginnerTierWinRate"]})
+                    heroes = constructHeroesForReturn(hero["name"], hero["beginnerTierWinRate"])
+                    beginnerTierHeroesToPlay.push(heroes)
                 end
             end
             return beginnerTierHeroesToPlay.to_json
@@ -87,7 +101,9 @@ class ScrapingController
             intermediateTierHeroesToPlay = []
             getHeroesWithStats().each do |hero|
                 if hero['intermediateTierWinRate'].to_f > 51
-                    intermediateTierHeroesToPlay.push({hero["name"] => hero["intermediateTierWinRate"]})
+                    heroes = constructHeroesForReturn(hero["name"], hero["intermediateTierWinRate"])
+
+                    intermediateTierHeroesToPlay.push(heroes)
                 end
             end
             return intermediateTierHeroesToPlay.to_json
@@ -101,7 +117,9 @@ class ScrapingController
             topTierHeroesToPlay = []
             getHeroesWithStats().each do |hero|
                 if hero['topTierWinRate'].to_f > 51
-                    topTierHeroesToPlay.push({hero["name"] => hero["topTierWinRate"]})
+                    heroes = constructHeroesForReturn(hero["name"], hero["topTierWinRate"])
+
+                    topTierHeroesToPlay.push(heroes)
                 end
             end
             return topTierHeroesToPlay.to_json
@@ -110,6 +128,94 @@ class ScrapingController
         end
     end
 
+    def getTierHeroNames(heroNames)
+
+    begin 
+        names = []
+        heroNames.each do |hero|
+            names.push(hero["name"])
+        end
+        return names
+
+    rescue StandardError => e
+        p e
+    end
+    end
+
+
+    def getUsersHeroesAccordingToTier(query)
+        begin
+            if(query["tier"] === "low")
+                heroesInMeta = []
+                userHeroes = @userHeroes.showHeroes()
+                tierData = getTierHeroNames(JSON.parse(getHeroesInMetaForLowTier()))
+                userHeroes.each do |hero|
+                    if tierData.include?(hero["name"])
+                        heroesInMeta.push(hero["name"])
+                    end
+                end
+                if heroesInMeta.count == 0
+                    return {
+                            "msg" => "Heroes you are tracking are not in the meta you could try checking other tiers or add other heroes"
+                        }.to_json
+                end
+                return heroesInMeta
+            end
+            if(query["tier"] === "beginner")
+                heroesInMeta = []
+                userHeroes = @userHeroes.showHeroes()
+                tierData = getTierHeroNames(JSON.parse(getHeroesInMetaForBeginnerTier()))
+                userHeroes.each do |hero|
+                    if tierData.include?(hero["name"])
+                        heroesInMeta.push(hero["name"])
+                    end
+                end
+                if heroesInMeta.count == 0
+                    return {
+                            "msg" => "Heroes you are tracking are not in the meta you could try checking other tiers or add other heroes"
+                        }.to_json
+                end
+                return heroesInMeta
+            end
+            if(query["tier"] === "intermediate")
+                heroesInMeta = []
+                userHeroes = @userHeroes.showHeroes()
+                tierData = getTierHeroNames(JSON.parse(getHeroesInMetaForIntermediateTier()))
+                userHeroes.each do |hero|
+                    if tierData.include?(hero["name"])
+                        heroesInMeta.push(hero["name"])
+                    end
+                end
+                if heroesInMeta.count == 0
+                    return {
+                            "msg" => "Heroes you are tracking are not in the meta you could try checking other tiers or add other heroes"
+                        }.to_json
+                end
+                return heroesInMeta
+            end
+            if(query["tier"] === "top")
+                heroesInMeta = []
+                userHeroes = @userHeroes.showHeroes()
+                tierData = getTierHeroNames(JSON.parse(getHeroesInMetaForTopTier()))
+                userHeroes.each do |hero|
+                    if tierData.include?(hero["name"])
+                        heroesInMeta.push(hero["name"])
+                    end
+                end
+                if heroesInMeta.count == 0
+                    return {
+                            "msg" => "Heroes you are tracking are not in the meta you could try checking other tiers or add other heroes"
+                        }.to_json
+                end
+                return heroesInMeta
+            end
+
+
+        rescue StandardError => e
+            p e
+        end
+    end
 end
 
 #p name.map {|x| x[/\d+.\d+/]}
+
