@@ -20,7 +20,7 @@ services:
     container_name: scrapingClient
     ports:
       - 8080:8080
-    image: scrapingClient
+    image: client
     volumes:
       - "./client/app:/app"
     tty: true
