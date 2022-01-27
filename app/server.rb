@@ -36,9 +36,12 @@ delete '/' do
   end
 end
 
+
+#when sending all heroes with their stats back have to change the data into json 
+
 get '/test' do
   begin
-    scrapingController.getMetaHeroes()
+    scrapingController.getHeroesInMetaForTopTier()
   rescue StandardError => e
     p e
   end  
