@@ -22,10 +22,36 @@ class ScrapingController
         return allHeorNames
     end
 
-    def getBasicHeroInfoForMainTable(query)
-        html = fileReader(@url)
-    end
+    def getMetaHeroes()
+    begin
+        reconstructedStats = []
+        nokogiriDoc = fileReader(@url)
 
+        nokogiriDoc.css('tr').each do |meta|
+            allData = meta.text.split("%")
+            statistics = allData.map {|x| x[/\d+.\d+/]}
+            names = allData.map {|x| x[/[a-z" "A-Z]+/]}
+            constructStats = {
+                "name" => names[0],
+                "lowTeirPickRate" => statistics[0],
+                "lowTeirWinRate" => statistics[1],
+                "beginnerTeirPickRate" => statistics[2],
+                "beginnerTeirWinRate" => statistics[3],
+                "interemediateTeirPickRate" => statistics[4],
+                "interemediateTeirWinRate" => statistics[5],
+                "highTeirPickRate" => statistics[6],
+                "highTeirWinRate" => statistics[7],
+                "topTeirPickRate" => statistics[8],
+                "topTeirWinRate" => statistics[9],
+            }
+            reconstructedStats.push(constructStats)
+        
+        end
+            return reconstructedStats.to_json
+    rescue StandardError => e
+        p e
+    end
+end
 end
 
 #p name.map {|x| x[/\d+.\d+/]}

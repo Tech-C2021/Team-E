@@ -27,7 +27,7 @@ class ClientHeroController
             if checkIfHeroExistsInDb < 0 
                 return "#{query["name"]} is not being tracked"
             end
-            return @heroes.showHeroesByName(query["name"])
+            return @heroes.showHeroesByName(query["name"]).to_json
         rescue StandardError => e
             puts e
         end

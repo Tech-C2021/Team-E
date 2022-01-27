@@ -38,11 +38,11 @@ end
 
 get '/test' do
   begin
-      query = JSON.parse(request.body.read)
-      scrapingController.getAllHeroNames()
+    scrapingController.getMetaHeroes()
   rescue StandardError => e
     p e
   end  
+
 end
 
 
