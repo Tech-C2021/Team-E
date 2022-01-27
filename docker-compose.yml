@@ -19,7 +19,7 @@ services:
       dockerfile: Docker/Dockerfile
     container_name: scrapingClient
     ports:
-      - 8080:8080
+      - 3000:3000
     image: client
     volumes:
       - "./client/app:/app"
