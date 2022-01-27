@@ -1,7 +1,6 @@
 require 'nokogiri'
 require 'httparty'
 require 'openssl'
-require_relative '../libs/realPath.rb'
 require_relative'../Repositories/heroesRepository.rb'
 class ScrapingController
     def initialize
