@@ -5,10 +5,10 @@ source "https://rubygems.org"
 gem 'nokogiri'
 gem 'open-uri'
 gem 'sqlite3'
-gem 'openssl'
+gem 'httparty'
 gem 'sinatra'
 gem 'webrick'
-
+gem 'rerun'
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 # gem "rails"

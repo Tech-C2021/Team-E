@@ -7,7 +7,7 @@ class Heroes
     end
 
     def heroesToTrack(name)
-            @db.execute "INSERT INTO heroes(name,status,heroIcon) values(?)",name
+            @db.execute "INSERT INTO heroes(name) values(?)",name
     end
     def showHeroes
         heroes = @db.execute "SELECT * FROM heroes"

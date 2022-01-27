@@ -2,12 +2,13 @@ require 'sinatra'
 require 'json'
 require 'webrick'
 require './Controllers/client/heroesController.rb'
+require './Controllers/scraperController.rb'
 configure do
   set :bind, '0.0.0.0'
 end
 
 heroesController = ClientHeroController.new()
-
+scrapingController = ScrapingController.new()
 get '/' do
   begin
   content_type :json
@@ -34,3 +35,14 @@ delete '/' do
     p e
   end
 end
+
+get '/test' do
+  begin
+      query = JSON.parse(request.body.read)
+      scrapingController.getAllHeroNames()
+  rescue StandardError => e
+    p e
+  end  
+end
+
+

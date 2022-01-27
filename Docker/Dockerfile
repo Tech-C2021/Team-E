@@ -3,4 +3,4 @@ FROM ruby:3.0
 WORKDIR /app
 COPY ./app .
 RUN bundle install
-ENTRYPOINT ["ruby","server.rb"]
+ENTRYPOINT ["rerun","ruby server.rb"]
