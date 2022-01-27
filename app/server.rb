@@ -69,8 +69,39 @@ get '/meta/low' do
     scrapingController.getHeroesInMetaForLowTier()
   rescue StandardError => e
     p e
-  end  
-
+  end
 end
+
+post '/meta/check' do
+  begin
+    query = JSON.parse(request.body.read)
+    scrapingController.getUsersHeroesAccordingToTier(query)
+  rescue StandardError => e
+    p e
+  end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
