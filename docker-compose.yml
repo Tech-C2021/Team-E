@@ -23,4 +23,4 @@ services:
     image: scrapingClient
     volumes:
       - "./client/app:/app"
-    ttyl: true
+    tty: true
