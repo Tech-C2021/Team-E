@@ -3,12 +3,24 @@ services:
  # server
   server: 
     build:
-      context: .
+      context: ./server
       dockerfile: Docker/Dockerfile
     container_name: scraping
     ports:
       - 127.0.0.1:4567:4567
     image: scraping:latest
     volumes:
-      - "./app:/app"
+      - "./server/app:/app"
     tty: true
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Docker/Dockerfile
+    container_name: scrapingClient
+    ports:
+      - 8080:8080
+    image: scrapingClient
+    volumes:
+      - "./client/app:/app"
+    ttyl: true

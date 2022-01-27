@@ -25,7 +25,7 @@ class ClientHeroController
         begin
             checkIfHeroExistsInDb = @heroes.showByName(query["name"])
             if checkIfHeroExistsInDb < 0 
-                return "#{query["name"]} is not being tracked"
+                return {"msg"=>"#{query["name"]} is not being tracked"}.to_json
             end
             return @heroes.showHeroesByName(query["name"]).to_json
         rescue StandardError => e
@@ -36,19 +36,19 @@ class ClientHeroController
 
     def trackHeroes(query)
         begin
-            checkIfExistsInDB = @heroes.showByName(query["name"])
+            checkIfExistsInDB = @heroes.showByName(query["name"].capitalize())
             
             if checkIfExistsInDB.each.count > 0
-                return "You are already tracking #{query["name"]}"
+                return {"msg"=>"You are already tracking #{query["name"].capitalize()}"}.to_json
             end
 
-            isValidHero = checkIfHeroIsvalid(query["name"])
+            isValidHero = checkIfHeroIsvalid(query["name"].capitalize())
             if isValidHero == false
-                return "#{query["name"]} is not a Dota hero"
+                return {"msg" => "#{query["name"]} is not a Dota hero"}.to_json
             end
 
-            @heroes.heroesToTrack(query["name"])
-            return "You Have started Tracking #{query["name"]}"
+            @heroes.heroesToTrack(query["name"].capitalize())
+            return {"msg" => "You Have started Tracking #{query["name"]}"}.to_json
         rescue StandardError => e
             p e
         end
@@ -58,10 +58,10 @@ class ClientHeroController
         begin
             check = @heroes.showByName(query["name"])
             if check.each.count == 0
-                return "#{query["name"]} doesn't exist"
+                return {"msg"=>"#{query["name"]} doesn't exist"}.to_json
             end
             @heroes.deleteHeroByName(query["name"])
-            return "#{query["name"]} deleted"
+            return {"msg" => "#{query["name"]} deleted"}.to_json
         rescue StandardError => e
             p e
         end
