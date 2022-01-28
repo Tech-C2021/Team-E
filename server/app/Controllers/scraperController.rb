@@ -160,8 +160,12 @@ class ScrapingController
                 userHeroes = @userHeroes.showHeroes()
                 tierData = getTierHeroNames(JSON.parse(getHeroesInMetaForLowTier()))
                 userHeroes.each do |hero|
-                    if tierData.include?(hero["name"])
-                        heroesInMeta.push(hero["name"])
+                  if tierData.include?(hero["name"].capitalize)
+                    format = {
+                      'name' => hero['name'],
+                      'icon' => hero['heroIcon']
+                    }
+                        heroesInMeta.push(format)
                     end
                 end
                 if heroesInMeta.count == 0
@@ -169,15 +173,19 @@ class ScrapingController
                             "msg" => "Heroes you are tracking are not in the meta you could try checking other tiers or add other heroes"
                         }.to_json
                 end
-                return heroesInMeta
+                return heroesInMeta.to_json
             end
             if(query["tier"] === "beginner")
                 heroesInMeta = []
                 userHeroes = @userHeroes.showHeroes()
                 tierData = getTierHeroNames(JSON.parse(getHeroesInMetaForBeginnerTier()))
                 userHeroes.each do |hero|
-                    if tierData.include?(hero["name"])
-                        heroesInMeta.push(hero["name"])
+                  if tierData.include?(hero["name"].capitalize)
+                    format = {
+                      'name' => hero['name'],
+                      'icon' => hero['heroIcon']
+                    }
+                        heroesInMeta.push(format)
                     end
                 end
                 if heroesInMeta.count == 0
@@ -185,15 +193,19 @@ class ScrapingController
                             "msg" => "Heroes you are tracking are not in the meta you could try checking other tiers or add other heroes"
                         }.to_json
                 end
-                return heroesInMeta
+                return heroesInMeta.to_json
             end
             if(query["tier"] === "intermediate")
                 heroesInMeta = []
                 userHeroes = @userHeroes.showHeroes()
                 tierData = getTierHeroNames(JSON.parse(getHeroesInMetaForIntermediateTier()))
                 userHeroes.each do |hero|
-                    if tierData.include?(hero["name"])
-                        heroesInMeta.push(hero["name"])
+                  if tierData.include?(hero["name"].capitalize)
+                 format = {
+                      'name' => hero['name'],
+                      'icon' => hero['heroIcon']
+                    }
+                        heroesInMeta.push(format)
                     end
                 end
                 if heroesInMeta.count == 0
@@ -201,15 +213,19 @@ class ScrapingController
                             "msg" => "Heroes you are tracking are not in the meta you could try checking other tiers or add other heroes"
                         }.to_json
                 end
-                return heroesInMeta
+                return heroesInMeta.to_json
             end
             if(query["tier"] === "top")
                 heroesInMeta = []
                 userHeroes = @userHeroes.showHeroes()
                 tierData = getTierHeroNames(JSON.parse(getHeroesInMetaForTopTier()))
                 userHeroes.each do |hero|
-                    if tierData.include?(hero["name"])
-                        heroesInMeta.push(hero["name"])
+                  if tierData.include?(hero["name"].capitalize)
+                 format = {
+                      'name' => hero['name'],
+                      'icon' => hero['heroIcon']
+                    }
+                        heroesInMeta.push(format)
                     end
                 end
                 if heroesInMeta.count == 0
@@ -217,7 +233,7 @@ class ScrapingController
                             "msg" => "Heroes you are tracking are not in the meta you could try checking other tiers or add other heroes"
                         }.to_json
                 end
-                return heroesInMeta
+                return heroesInMeta.to_json
             end
 
 

@@ -14,9 +14,28 @@ class ClientHeroController
         return allHeroes.include?(name)
     end
 #display heroes
+    def getStats(name,icon)
+      begin
+        stats = @scrapeMethods.getHeroesWithStats()
+        stats.each do |heroInfo|
+          c = heroInfo['name'].to_s.downcase
+           if c == name
+                heroInfo['icon']= icon
+               return heroInfo
+          end
+        end
+      rescue StandardError => e 
+        p e
+      end
+    end
     def displayHeroes
         begin
-            return @heroes.showHeroes.to_json
+          data = []
+          heroes = @heroes.showHeroes
+          heroes.each do |hero|
+            p data.push(getStats(hero['name'], hero['heroIcon']))
+          end
+          return data.to_json
         rescue StandardError => e
             p e
         end 
@@ -28,6 +47,7 @@ class ClientHeroController
             if checkIfHeroExistsInDb < 0 
                 return {"msg"=>"#{query["name"]} is not being tracked"}.to_json
             end
+            
             return @heroes.showHeroesByName(query["name"]).to_json
         rescue StandardError => e
             puts e
