@@ -1,10 +1,26 @@
 version: "3.7"
 services:
-  # server
-  server:
+ # server
+  server: 
     build:
-      context: .
+      context: ./server
       dockerfile: Docker/Dockerfile
     container_name: scraping
+    ports:
+      - 127.0.0.1:4567:4567
     image: scraping:latest
+    volumes:
+      - "./server/app:/app"
+    tty: true
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Docker/Dockerfile
+    container_name: scrapingClient
+    ports:
+      - 3000:3000
+    image: client
+    volumes:
+      - "./client/app:/app"
     tty: true
