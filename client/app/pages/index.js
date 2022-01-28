@@ -2,6 +2,7 @@ export const getStaticProps = async () => {
   const res = await fetch("http://scraping:4567")
   const data = await res.json()
 
+
   return {
     props: { heroes: data }
   }

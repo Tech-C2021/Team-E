@@ -17,36 +17,16 @@ class ScrapingController
         allHeorNames = []
         nokogiriDoc = fileReader('https://www.dotabuff.com/heroes')
         nokogiriDoc.css('.name').each do |a|
-            allHeorNames.push(a.text)
+          allHeorNames.push(a.text.downcase)
         end
         return allHeorNames
     end
-
-    def nameMakerForFetchingIcons()
-      begin
-        fixedNames = []
-        normalNames = getAllHeroNames
-        normalNames.map{
-          |normalName|  
-          fixedNames.push(normalName.downcase.gsub(" ", "-"))
-         }
-        c = fixedNames.index("Nature's-Prophet")
-        fixedNames[c] = "natures-prophet"
-        return fixedNames.to_json
-      rescue StandardError => e
-        p e
-      end
-    end
     
-    def getAllHeroIcons()
+    def getHeroIcons(icon)
       begin
-      heroNameToLoop = getAllHeroNames
-      heroNameToLoop.each do |heroName|
-      end
-      rescue StandardError => e
-        p e
-      end
-    end
+          url = "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/#{icon.downcase}.png"
+          return url
+
     def getHeroesWithStats()
     begin
         reconstructedStats = []
@@ -174,8 +154,12 @@ class ScrapingController
                 userHeroes = @userHeroes.showHeroes()
                 tierData = getTierHeroNames(JSON.parse(getHeroesInMetaForLowTier()))
                 userHeroes.each do |hero|
-                    if tierData.include?(hero["name"])
-                        heroesInMeta.push(hero["name"])
+                  if tierData.include?(hero["name"].capitalize)
+                    format = {
+                      'name' => hero['name'],
+                      'icon' => hero['heroIcon']
+                    }
+                        heroesInMeta.push(format)
                     end
                 end
                 if heroesInMeta.count == 0
@@ -183,15 +167,19 @@ class ScrapingController
                             "msg" => "Heroes you are tracking are not in the meta you could try checking other tiers or add other heroes"
                         }.to_json
                 end
-                return heroesInMeta
+                return heroesInMeta.to_json
             end
             if(query["tier"] === "beginner")
                 heroesInMeta = []
                 userHeroes = @userHeroes.showHeroes()
                 tierData = getTierHeroNames(JSON.parse(getHeroesInMetaForBeginnerTier()))
                 userHeroes.each do |hero|
-                    if tierData.include?(hero["name"])
-                        heroesInMeta.push(hero["name"])
+                  if tierData.include?(hero["name"].capitalize)
+                    format = {
+                      'name' => hero['name'],
+                      'icon' => hero['heroIcon']
+                    }
+                        heroesInMeta.push(format)
                     end
                 end
                 if heroesInMeta.count == 0
@@ -199,15 +187,19 @@ class ScrapingController
                             "msg" => "Heroes you are tracking are not in the meta you could try checking other tiers or add other heroes"
                         }.to_json
                 end
-                return heroesInMeta
+                return heroesInMeta.to_json
             end
             if(query["tier"] === "intermediate")
                 heroesInMeta = []
                 userHeroes = @userHeroes.showHeroes()
                 tierData = getTierHeroNames(JSON.parse(getHeroesInMetaForIntermediateTier()))
                 userHeroes.each do |hero|
-                    if tierData.include?(hero["name"])
-                        heroesInMeta.push(hero["name"])
+                  if tierData.include?(hero["name"].capitalize)
+                 format = {
+                      'name' => hero['name'],
+                      'icon' => hero['heroIcon']
+                    }
+                        heroesInMeta.push(format)
                     end
                 end
                 if heroesInMeta.count == 0
@@ -215,15 +207,19 @@ class ScrapingController
                             "msg" => "Heroes you are tracking are not in the meta you could try checking other tiers or add other heroes"
                         }.to_json
                 end
-                return heroesInMeta
+                return heroesInMeta.to_json
             end
             if(query["tier"] === "top")
                 heroesInMeta = []
                 userHeroes = @userHeroes.showHeroes()
                 tierData = getTierHeroNames(JSON.parse(getHeroesInMetaForTopTier()))
                 userHeroes.each do |hero|
-                    if tierData.include?(hero["name"])
-                        heroesInMeta.push(hero["name"])
+                  if tierData.include?(hero["name"].capitalize)
+                 format = {
+                      'name' => hero['name'],
+                      'icon' => hero['heroIcon']
+                    }
+                        heroesInMeta.push(format)
                     end
                 end
                 if heroesInMeta.count == 0
@@ -231,7 +227,7 @@ class ScrapingController
                             "msg" => "Heroes you are tracking are not in the meta you could try checking other tiers or add other heroes"
                         }.to_json
                 end
-                return heroesInMeta
+                return heroesInMeta.to_json
             end
 
 

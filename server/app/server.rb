@@ -20,7 +20,8 @@ end
 
 post '/' do
   begin
- query = JSON.parse(request.body.read)
+  content_type :json
+query = JSON.parse(request.body.read)
  heroesController.trackHeroes(query)
   rescue StandardError => e
     p e
@@ -29,7 +30,8 @@ end
 
 delete '/' do
     begin
-      query = JSON.parse(request.body.read)
+   content_type :json
+    query = JSON.parse(request.body.read)
       heroesController.deleteHeroByName(query)
   rescue StandardError => e
     p e
@@ -42,7 +44,8 @@ end
 
 get '/meta/beginner' do
   begin
-    scrapingController.getHeroesInMetaForBeginnerTier()
+    content_type :json
+ scrapingController.getHeroesInMetaForBeginnerTier()
   rescue StandardError => e
     p e
   end  
@@ -50,7 +53,8 @@ end
 
 get '/meta/intermediate' do
   begin
-    scrapingController.getHeroesInMetaForIntermediateTier()
+     content_type :json
+scrapingController.getHeroesInMetaForIntermediateTier()
   rescue StandardError => e
     p e
   end  
@@ -58,7 +62,8 @@ end
 
 get '/meta/top' do
   begin
-    scrapingController.getHeroesInMetaForTopTier()
+     content_type :json
+scrapingController.getHeroesInMetaForTopTier()
   rescue StandardError => e
     p e
   end  
@@ -66,7 +71,8 @@ end
 
 get '/meta/low' do
   begin
-    scrapingController.getHeroesInMetaForLowTier()
+     content_type :json
+scrapingController.getHeroesInMetaForLowTier()
   rescue StandardError => e
     p e
   end
@@ -74,7 +80,8 @@ end
 
 post '/meta/check' do
   begin
-    query = JSON.parse(request.body.read)
+     content_type :json
+query = JSON.parse(request.body.read)
     scrapingController.getUsersHeroesAccordingToTier(query)
   rescue StandardError => e
     p e
@@ -90,8 +97,11 @@ get '/test' do
 end
   
 
+get '/test' do
 
-
+  content_type :json
+  scrapingController.nameFixerForGettingIcons
+end
 
 
 
