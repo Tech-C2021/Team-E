@@ -6,8 +6,8 @@ class Heroes
         @db.results_as_hash=true
     end
 
-    def heroesToTrack(name)
-            @db.execute "INSERT INTO heroes(name) values(?)",name
+    def heroesToTrack(name, icon)
+            @db.execute "INSERT INTO heroes(name, heroIcon) values(?,?)",name,icon
     end
     def showHeroes
         heroes = @db.execute "SELECT * FROM heroes"

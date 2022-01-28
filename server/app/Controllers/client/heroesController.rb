@@ -10,6 +10,7 @@ class ClientHeroController
 
     def checkIfHeroIsvalid(name)
         allHeroes = @scrapeMethods.getAllHeroNames
+        p allHeroes
         return allHeroes.include?(name)
     end
 #display heroes
@@ -33,21 +34,27 @@ class ClientHeroController
         end
 
     end
-
+    def nameFixer(name) 
+      return name.gsub(" ","_")
+    end
     def trackHeroes(query)
         begin
-            checkIfExistsInDB = @heroes.showByName(query["name"].capitalize())
-            
+            checkIfExistsInDB = @heroes.showByName(query["name"])
+             
             if checkIfExistsInDB.each.count > 0
-                return {"msg"=>"You are already tracking #{query["name"].capitalize()}"}.to_json
+                return {"msg"=>"You are already tracking #{query["name"]}"}.to_json
             end
 
-            isValidHero = checkIfHeroIsvalid(query["name"].capitalize())
+            isValidHero = checkIfHeroIsvalid(query["name"])
             if isValidHero == false
                 return {"msg" => "#{query["name"]} is not a Dota hero"}.to_json
             end
+            if query["name"] == "nature's prophet"
+              query["name"] = "furion"
+            end
+            icon = nameFixer(query['name'])
+            @heroes.heroesToTrack(query["name"], @scrapeMethods.getHeroIcons(icon))
 
-            @heroes.heroesToTrack(query["name"].capitalize())
             return {"msg" => "You Have started Tracking #{query["name"]}"}.to_json
         rescue StandardError => e
             p e
