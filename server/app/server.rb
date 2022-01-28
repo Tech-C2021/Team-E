@@ -85,7 +85,7 @@ get '/test' do
   begin
     scrapingController.nameMakerForFetchingIcons
   rescue StandardError => e
-    pe
+    p e
   end
 end
   
