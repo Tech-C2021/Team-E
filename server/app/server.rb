@@ -81,7 +81,14 @@ post '/meta/check' do
   end
 end
 
-
+get '/test' do
+  begin
+    scrapingController.nameMakerForFetchingIcons
+  rescue StandardError => e
+    pe
+  end
+end
+  
 
 
 

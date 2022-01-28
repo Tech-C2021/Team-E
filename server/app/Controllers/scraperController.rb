@@ -22,6 +22,31 @@ class ScrapingController
         return allHeorNames
     end
 
+    def nameMakerForFetchingIcons()
+      begin
+        fixedNames = []
+        normalNames = getAllHeroNames
+        normalNames.map{
+          |normalName|  
+          fixedNames.push(normalName.downcase.gsub(" ", "-"))
+         }
+        c = fixedNames.index("Nature's-Prophet")
+        fixedNames[c] = "natures-prophet"
+        return fixedNames.to_json
+      rescue StandardError => e
+        p e
+      end
+    end
+    
+    def getAllHeroIcons()
+      begin
+      heroNameToLoop = getAllHeroNames
+      heroNameToLoop.each do |heroName|
+      end
+      rescue StandardError => e
+        p e
+      end
+    end
     def getHeroesWithStats()
     begin
         reconstructedStats = []
