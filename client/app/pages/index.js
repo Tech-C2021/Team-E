@@ -5,18 +5,12 @@ import Link from 'next/link'
 import Navbar from '../comps/Navbar'
 export default function Home() {
 return (
-    <div className="header">
+    <div className="about">
       <h1> 2022Ruby - Test Scraper </h1>
-        <ul>
-          <li><Link href='/about'>
-                <a>About</a>
-               </Link>
-                 </li>
-                  <li>
-                    <a>Your Heroes</a>
-                      </li>
-                        
-        </ul>
+      <form className="trackerForm">
+        <input placeholder="Enter the hero you want to track" className="trackerInput"></input>
+        <button className="trackerButton">Track</button>
+      </form>
     </div>
       )
 }

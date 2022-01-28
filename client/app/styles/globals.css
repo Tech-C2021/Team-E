@@ -80,3 +80,42 @@ nav {
   box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
   color:whitesmoke;
 }
+
+
+/* index */
+
+.trackerForm {
+  width:40%;
+  height:10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  margin-top: 9vh;
+}
+.trackerInput {
+  height:30px;
+  width:90%;
+  margin: 0 auto;
+  letter-spacing: 2px;
+  padding:5px;
+}
+.trackerButton {
+  margin-top:15px;
+  border:none;
+  background:coral;
+  letter-spacing: 2px;
+  padding-left:22px;
+  padding-right:22px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radus: 5px;
+  color:whitesmoke;
+  border-radius: 5px;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
+  cursor:pointer;
+  transition: 0.2s;
+}
+.trackerButton:hover {
+  background:blueviolet;
+}
