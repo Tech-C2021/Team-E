@@ -1,3 +1,4 @@
+import { useState } from "react"
 export const getStaticProps = async () => {
   const res = await fetch("http://scraping:4567")
   const data = await res.json()
@@ -8,12 +9,28 @@ export const getStaticProps = async () => {
   }
 }
 export default function Home({ heroes }) {
-return (
+const [names, setNames ] = useState('')
+
+const submit =  () => {
+  const response =  fetch ("http://scraping:4567", {
+    method: 'POST',
+    body: JSON.stringify({ names }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+
+  return (
     <div className="about">
       <h1> 2022Ruby - Test Scraper </h1>
       <form className="trackerForm">
-        <input placeholder="Enter the hero you want to track" className="trackerInput"></input>
-        <button className="trackerButton">Track</button>
+        <input type='text' required value= { names }
+          onChange={ (e) => setNames(e.target.value) }
+        placeholder="Enter the hero you want to track" className="trackerInput"></input>
+        <button className="trackerButton" onClick={ submit }>Track</button>
+      
       </form>
       <div className="grid">      { heroes.map(hero => (
         <div key = { hero.id } className="trackedHeroes">
@@ -36,3 +53,4 @@ return (
     </div>
       )
 }
+

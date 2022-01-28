@@ -10,7 +10,6 @@ class ClientHeroController
 
     def checkIfHeroIsvalid(name)
         allHeroes = @scrapeMethods.getAllHeroNames
-        p allHeroes
         return allHeroes.include?(name)
     end
 #display heroes
