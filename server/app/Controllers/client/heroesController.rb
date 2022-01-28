@@ -54,6 +54,7 @@ class ClientHeroController
         end
 
     end
+
     def nameFixer(name) 
       return name.gsub(" ","_")
     end

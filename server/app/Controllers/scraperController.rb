@@ -26,7 +26,10 @@ class ScrapingController
       begin
           url = "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/#{icon.downcase}.png"
           return url
-
+        rescue StandardError => e
+            p e
+        end
+    end
     def getHeroesWithStats()
     begin
         reconstructedStats = []
