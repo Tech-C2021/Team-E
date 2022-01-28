@@ -33,7 +33,7 @@ class ClientHeroController
           data = []
           heroes = @heroes.showHeroes
           heroes.each do |hero|
-            p data.push(getStats(hero['name'], hero['heroIcon']))
+             data.push(getStats(hero['name'], hero['heroIcon']))
           end
           return data.to_json
         rescue StandardError => e
