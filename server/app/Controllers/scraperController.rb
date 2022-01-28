@@ -21,17 +21,11 @@ class ScrapingController
         end
         return allHeorNames
     end
-
     
     def getHeroIcons(icon)
       begin
           url = "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/#{icon.downcase}.png"
           return url
-      rescue StandardError => e
-        p e
-      end
-    end
-
 
     def getHeroesWithStats()
     begin

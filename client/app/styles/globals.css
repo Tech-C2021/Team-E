@@ -1,16 +1,123 @@
-html,
-body {
+@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap');
+*{
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Yomogi', cursive; font-family: 'Sawarabi Gothic', sans-serif;
+  letter-spacing:5px;
 }
 
-a {
-  color: inherit;
+
+/* aboutpage */
+
+.about {
+  width: 80%;
+  margin:0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.aboutHeader {
+  width:115px;
+  padding:15px;
+}
+.faq {
+  margin-top: 50px; 
+}
+.question {
+  padding: 10px;
+  width:70%;
+  font-weight: bolder;
+  font-size:2em;
+  margin-left:70px;
+}
+.answer {
+  padding: 50px;
+  width: 70%;
+  margin: 0 auto;
+}
+.blocks {
+  padding: 10px;
+  margin-bottom: 10vh ;
+}
+.teamsWorkTable {
+  border-radius:5px;
+}
+th {
+  border:1px solid grey;
+  border-radius:5px;
+  padding:10px;
+  width:300px;
+  font-weight:lighter;
+}
+
+
+/* navbar */
+
+
+nav {
+  padding:30px;
+  width:80%;
+  margin: 5vh auto;
+  display:flex;
+  justify-content: end;
+  border-bottom:1px solid grey;
+}
+.links {
+  width:200px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.anchor {
   text-decoration: none;
+  transition:0.2s ease-in-out;
+  padding:10px;
+  border-radius:5px;
+  color:black;
+}
+.anchor:hover {
+  background:coral;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
+  color:whitesmoke;
 }
 
-* {
-  box-sizing: border-box;
+
+/* index */
+
+.trackerForm {
+  width:40%;
+  height:10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  margin-top: 9vh;
+}
+.trackerInput {
+  height:30px;
+  width:90%;
+  margin: 0 auto;
+  letter-spacing: 2px;
+  padding:5px;
+}
+.trackerButton {
+  margin-top:15px;
+  border:none;
+  background:coral;
+  letter-spacing: 2px;
+  padding-left:22px;
+  padding-right:22px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radus: 5px;
+  color:whitesmoke;
+  border-radius: 5px;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
+  cursor:pointer;
+  transition: 0.2s;
+}
+.trackerButton:hover {
+  background:blueviolet;
 }

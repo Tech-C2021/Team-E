@@ -88,7 +88,14 @@ query = JSON.parse(request.body.read)
   end
 end
 
-
+get '/test' do
+  begin
+    scrapingController.nameMakerForFetchingIcons
+  rescue StandardError => e
+    p e
+  end
+end
+  
 
 get '/test' do
 

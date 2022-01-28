@@ -1,14 +1,26 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+export const getStaticProps = async () => {
+  const res = await fetch("http://scraping:4567")
+  const data = await res.json()
 
-export default function Home() {
+
+  return {
+    props: { heroes: data }
+  }
+}
+export default function Home({ heroes }) {
 return (
-    <div>
-      <h1 className="head">Scraper</h1>
-        <p>What is this scraper ?? Who know's?? Think about it who?? For that matter who knows anything I mean you could be a poop particle for some 15 dimentional being and here you are
-          thinking you are the greatest living thing ever to walk this reality. Well you know what you are nothing but a shit particle.
-          </p>
-  </div>
-  )
+    <div className="about">
+      <h1> 2022Ruby - Test Scraper </h1>
+      <form className="trackerForm">
+        <input placeholder="Enter the hero you want to track" className="trackerInput"></input>
+        <button className="trackerButton">Track</button>
+      </form>
+
+      { heroes.map(hero => (
+        <div key = { hero.id }>
+          <p>{ hero.name }</p>
+        </div> 
+      )) }
+    </div>
+      )
 }
